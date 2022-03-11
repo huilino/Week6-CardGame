@@ -13,7 +13,7 @@ class GameTable{
         
     }
       
-    createDeck(){
+    createDeck(){ //This method create a deck consists of 52cards.
 
         for (let i = 0; i < this.suits.length; i++) {
             for (let j = 0; j <this.ranks.length; j++) {
@@ -24,7 +24,7 @@ class GameTable{
         return this.deck;   
     }  
 
-    shuffleDeck() { 
+    shuffleDeck() { //randomly shuffle cards in the deck
         
         for (let i = this.deck.length - 1; i > 0; i--) {
                 let j = Math.floor(Math.random() * (i + 1));
@@ -34,7 +34,7 @@ class GameTable{
             }
     }
 
-    dealDeck(){
+    dealDeck(){ //deal shuffled deck to players. Each player will get 26 cards
 
         this.player1.push('Lynn');
         this.player2.push('Vince');
@@ -46,6 +46,9 @@ class GameTable{
         this.player1Deck = d.deck.slice(0,26);
         this.player2Deck = d.deck.slice(26,52);
 
+        console.log(`Player 1 : ${this.player1}`); 
+        console.log(`Player 2 : ${this.player2}`);
+
     }
 
     startGame(){
@@ -56,8 +59,8 @@ class GameTable{
                 this.player1Score += 1;
                
                 console.log(`${this.player1} : ` , this.player1Deck[i][2][0] ,this.player1Deck[i][1] + " > " + `${this.player2} : `, this.player2Deck[i][2][0],this.player2Deck[i][1]);
-                console.log(`${this.player1} score !`);
-                console.log(`Current Score --> ${this.player1} : ${this.player1Score}`);
+                console.log(`${this.player1} score !`);   //Player with higher card value score
+                console.log(`Current Score --> ${this.player1} : ${this.player1Score}`);  //Register score for player that scores
 
             } else if (this.player1Deck[i][2][0] < this.player2Deck[i][2][0]){
                 this.player2Score += 1;
@@ -72,19 +75,19 @@ class GameTable{
         }
     }
 
-    displayResult(){
+    displayResult(){   // Comparing the total score between player 1 and 2
 
         if (this.player1Score > this.player2Score){
             console.log(`The final score is ${this.player1} : ${this.player1Score} to ${this.player2} : ${this.player2Score}.
-            The WINNER is ${this.player1}!`);
+        The WINNER is ${this.player1}! Hooray!!! `);
            
         } else if (this.player1Score < this.player2Score){
             console.log(`The final score is ${this.player2} : ${this.player2Score} to ${this.player1} : ${this.player1Score}.
-            The WINNER is ${this.player2}!`);
+        The WINNER is ${this.player2}! Hooray!!! `);
             
         } else {
             console.log(`The final score is ${this.player2} : ${this.player2Score} to ${this.player1} : ${this.player1Score};
-            It is a TIE !!! Try again!`);
+        It is a TIE !!! Try again!`);
         }
     }
 
